@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <ul class="nav nav-tabs">
+        <!--   notion important pas forcement necessaire sur les path avec / ou pas / relative or abolut path
+           chapitre 129 Understant Navigation Path
+           à regarder
+           -->
+        <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/">Home</a></li>
+        <li role="presentation" routerLinkActive="active"><a routerLink="servers">Servers</a></li>
+        <li role="presentation" routerLinkActive="active"><a [routerLink]="['users']">Users</a></li>
+        <!-- routerLink peut etre property Binding -->
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <!-- Directive <router-outlet><router-outlet> pour looder le router d'angular -->
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
