@@ -11,18 +11,12 @@ import {UserComponent} from './users/user/user.component';
 import {EditServerComponent} from './servers/edit-server/edit-server.component';
 import {ServerComponent} from './servers/server/server.component';
 import {ServersService} from './servers/servers.service';
-import {RouterModule, Routes} from '@angular/router';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AuthGuard} from './auth-guard';
+import {AuthService} from './auth.service';
+import {CanDeactivatedGuard} from './can-deactivate-guard.service';
 
-/**
- * On creer notre route avec un constant appRoutes ,
- *
- * app.module est le meilleur endroit pour informer angular des routes de notre application
- */
-const appRoutes: Routes = [
-  {path: '', component: HomeComponent},  /** page d'acceuil  */
-  {path: 'users', component: UsersComponent}, /** c'est comme localhost:4200/users */
-  {path: 'servers', component: ServersComponent} /** c'est comme localhost:4200/servers */
-];
 
 @NgModule({
   declarations: [
@@ -32,15 +26,17 @@ const appRoutes: Routes = [
     ServersComponent,
     UserComponent,
     EditServerComponent,
-    ServerComponent
+    ServerComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    AppRoutingModule
     /** Pour enregistrer notre route auprès d'angular ,On fait savoir à angular la configuration de notre route*/
-    RouterModule.forRoot(appRoutes)
+    // RouterModule.forRoot(appRoutes)
   ],
-  providers: [ServersService],
+  providers: [ServersService, AuthGuard, AuthService, CanDeactivatedGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

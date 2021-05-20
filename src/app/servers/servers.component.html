@@ -1,18 +1,39 @@
 <div class="row">
   <div class="col-xs-12 col-sm-4">
     <div class="list-group">
-      <a
-        href="#"
+      <!-- [routerLink]
+         http://localhost:4200/servers/5/edit  -->
+      <!-- avec [queryParam] qui n'est rien d'autre qu'une proprieté de routerLink pour ajouter des param dans url
+       comme  localhost:4200/servers/5/edit?allowEdit=1
+       on peut ajouter un fragment fragment = loading pour sauter avec les # en html :
+       http://localhost:4200/servers/5/edit?allowEdit=1#loading
+
+          <a
+        [routerLink]="['/servers' ,server.id, 'edit']"
+        [queryParams]="{allowEdit: '1'}"
+        [fragment]="'loading'"
         class="list-group-item"
         *ngFor="let server of servers">
         {{ server.name }}
       </a>
+
+       -->
+      <a
+        [routerLink]="['/servers' ,server.id]"
+        [queryParams]="{allowEdit: server.id === 3 ? '1':'0'}"
+        [fragment]="'loading'"
+        class="list-group-item"
+        *ngFor="let server of servers">
+        <span [ngStyle]="{'color': server.status === 'offline' ? 'red' : 'green'}"> {{ server.name }} </span>
+      </a>
     </div>
   </div>
   <div class="col-xs-12 col-sm-4">
-    <app-edit-server></app-edit-server>
+    <!--pour les child routes-->
+    <router-outlet></router-outlet>
+<!--    <app-edit-server></app-edit-server>
     <hr>
-    <app-server></app-server>
+    <app-server></app-server>-->
   </div>
 </div>
 

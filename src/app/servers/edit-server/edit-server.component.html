@@ -1,3 +1,5 @@
+<h2 *ngIf="!allowEdit">You are not Allowed to Edit </h2>
+<div *ngIf="allowEdit">
 <div class="form-group">
   <label for="name">Server Name</label>
   <input
@@ -19,3 +21,5 @@
 <button
   class="btn btn-primary"
   (click)="onUpdateServer()">Update Server</button>
+<!--<button class="btn btn-primary" (click)="reload()">Reload</button>-->
+</div>
